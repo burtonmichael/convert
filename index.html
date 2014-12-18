@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Convert</title>
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+	<style>
+		.row {
+			margin-bottom: 24px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<h1>Create language app</h1>
+				<p class="lead">Rock that shit</p>
+			</div>
+		</div>
+		<form class="form-horizontal" id="formMask" name="formMask" action="javascript:generate()">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<fieldset>
+						<legend>Dev</legend>
+						<div class="form-group">
+							<div class="col-sm-offset-4 col-sm-8">
+								<button class="btn btn-primary" id="btnFields" type="button" onclick="loadFields()">Load fields</button>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<fieldset>
+						<legend>Load language</legend>
+						<p>Make sure the specified language is in the languages directory and named "dropList_
+							<em>language</em>.js".</p>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="language">Language code:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="language" name="language" placeholder="en">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-4 col-sm-8">
+								<button class="btn btn-primary" id="btnLanguage" type="button" onclick="loadLanguage()">Load</button>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<div id="warning" class="alert alert-warning" role="alert"><p><strong>Warning!</strong> A language must be loaded before continuing.</p></div>
+					<fieldset>
+						<legend>Setup</legend>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="isoLanguage">ISO language code:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="isoLanguage" name="isoLanguage" required placeholder="en-GB">
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<fieldset>
+						<legend>Field translations</legend>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="country">Country:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="country" name="country" required placeholder="Country">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="city">City:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="city" name="city" required placeholder="City">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="loc">Location:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="loc" name="loc" required placeholder="Location">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="empty">Empty Select:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="empty" name="empty" required placeholder="Please Select">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="pickup">Pick Up:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="pickup" name="pickup" required placeholder="Pick Up">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="pickupDate">Pick Up Date:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="pickupDate" name="pickupDate" required placeholder="Pick Up Date">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="pickupTime">Pick Up Time:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="pickupTime" name="pickupTime" required placeholder="Pick Up Time">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="dropoffDate">Drop Off Date:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="dropoffDate" name="dropoffDate" required placeholder="Drop Off Date">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="dropoffTime">Drop Off Time:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="dropoffTime" name="dropoffTime" required placeholder="Drop Off Time">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="driverAgeBetween">Driver aged:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="driverAgeBetween" name="driverAgeBetween" required placeholder="Driver aged between 25 – 70">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="driverAge">Driver's age:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="driverAge" name="driverAge" required placeholder="Driver's age">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="loc">Search:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="search" name="search" required placeholder="Search">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="loc">Error - Country:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="errorSelectCountry" name="errorSelectCountry" required placeholder="Country Required">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="loc">Error - City:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="errorSelectCity" name="errorSelectCity" required placeholder="City Required">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="loc">Error - Location:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="errorSelectLocation" name="errorSelectLocation" required placeholder="Location Required">
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<fieldset>
+						<legend>Mask content</legend>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="downtown">Downtown:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="downtown" name="downtown" required placeholder="Downtown">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="airport">Airport:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="airport" name="airport" required placeholder="Airport">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="trainstation">Train Station:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="trainstation" name="trainstation" required placeholder="Train Station">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="terminal">Terminal:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="terminal" name="terminal" required placeholder="Terminal">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="hotel">Hotel:</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="hotel" name="hotel" required placeholder="Hotel">
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+							<button id="btnCompile" disabled type="submit" class="btn btn-default btn-lrg btn-primary btn-block">COMPILE</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<fieldset>
+						<legend>Resulting code</legend>
+						<textarea class="form-control" id="result" cols="30" rows="10"></textarea>
+					</fieldset>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/minify.json.js"></script>
+	<script src="js/main.js"></script>
+</body>
+
+</html>
